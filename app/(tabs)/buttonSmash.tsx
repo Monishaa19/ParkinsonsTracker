@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Animated } from 'react-native
 
 const sendScoreToServer = async (score: number) => {
   try {
-    await fetch('/buttonSmash', {
+    await fetch('https://parkinsonschartsbackend.onrender.com/buttonSmash', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ score}),

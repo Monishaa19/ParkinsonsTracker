@@ -5,7 +5,7 @@ import Svg, { Path, Circle } from 'react-native-svg';
 
 const sendScoreToServer = async (score: number, time: number) => {
   try {
-    await fetch('/connectTheDots', {
+    await fetch('https://parkinsonschartsbackend.onrender.com/connectTheDots', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ score, time }),

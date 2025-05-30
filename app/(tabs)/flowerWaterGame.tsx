@@ -11,7 +11,7 @@ import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 
 const sendScoreToServer = async (time: number) => {
   try {
-    await fetch('/garden', {
+    await fetch('https://parkinsonschartsbackend.onrender.com/garden', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({time }),

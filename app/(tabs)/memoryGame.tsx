@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Animated } from 'react-native
 
 const sendScoreToServer = async (score: number) => {
   try {
-    await fetch('/brainDots', {
+    await fetch('https://parkinsonschartsbackend.onrender.com/brainDots', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ score}),
@@ -102,7 +102,12 @@ const MemoryGame = () => {
   useEffect(() => {
     initializeGame();
   }, []);
-
+  
+  useEffect(() => {
+  if (gameComplete) {
+    sendScoreToServer(moves);
+  }
+}, [gameComplete]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Jewel Memory Game</Text>
@@ -144,7 +149,7 @@ const MemoryGame = () => {
           </TouchableOpacity>
         </View>
       )}
-      sendScoreToServer(moves);
+      
     </View>
   );
 };

@@ -11,7 +11,7 @@ import Svg, { Path } from 'react-native-svg';
 
 const sendScoreToServer = async (score: number) => {
   try {
-    await fetch('/jitteryLine', {
+    await fetch('https://parkinsonschartsbackend.onrender.com/jitteryLine', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ score}),

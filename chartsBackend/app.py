@@ -71,5 +71,32 @@ def save_score5():
     collection.insert_one(doc)
     return jsonify({'success': True}), 201
 
+def get_latest(collection_name, i):
+    collection = db[collection_name]
+    docs = list(collection.find().sort('_id', -1).limit(i))
+    for doc in docs:
+        doc['_id'] = str(doc['_id'])  # Convert ObjectId to string for JSON serialization
+    return jsonify(docs), 200
+
+@app.route('/connectTheDots/latest/<int:i>', methods=['GET'])
+def get_connect_the_dots(i):
+    return get_latest('connectTheDots', i)
+
+@app.route('/jitteryLine/latest/<int:i>', methods=['GET'])
+def get_jittery_line(i):
+    return get_latest('jitteryLine', i)
+
+@app.route('/garden/latest/<int:i>', methods=['GET'])
+def get_garden(i):
+    return get_latest('garden', i)
+
+@app.route('/buttonSmash/latest/<int:i>', methods=['GET'])
+def get_button_smash(i):
+    return get_latest('buttonSmash', i)
+
+@app.route('/brainDots/latest/<int:i>', methods=['GET'])
+def get_brain_dots(i):
+    return get_latest('brainDots', i)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
